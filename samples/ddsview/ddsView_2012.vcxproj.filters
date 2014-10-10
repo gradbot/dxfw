@@ -6,4 +6,7 @@
   <ItemGroup>
     <CustomBuild Include="ddsView.fx" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="buildShaders.bat" />
+  </ItemGroup>
 </Project>

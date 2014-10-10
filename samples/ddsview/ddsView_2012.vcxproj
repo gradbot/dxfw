@@ -124,7 +124,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
-      <Command>$(SolutionDir)/buildShaders.bat</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -161,7 +162,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
-      <Command>$(SolutionDir)/buildShaders.bat</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
@@ -315,9 +317,22 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ddsView.fx">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">call $(SolutionDir)/buildShaders.bat</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)/shaders/psStencil.h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">call $(SolutionDir)/buildShaders.bat</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(SolutionDir)/shaders/psStencil.h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">call $(SolutionDir)/buildShaders.bat</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)/shaders/psStencil.h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">call $(SolutionDir)/buildShaders.bat</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">$(SolutionDir)/shaders/psStencil.h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">call $(SolutionDir)/buildShaders.bat</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)/shaders/psStencil.h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">call $(SolutionDir)/buildShaders.bat</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)/shaders/psStencil.h</Outputs>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="buildShaders.bat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -644,9 +644,10 @@ HRESULT BeforeLoadingSrv( const std::wstring& filename )
         fs::wpath ddsFolder = currentDds.parent_path();
 
         fs::wdirectory_iterator end_iter;
-        for ( fs::wdirectory_iterator it(ddsFolder); it != end_iter; ++it)
+        for (fs::wdirectory_iterator it(ddsFolder); it != end_iter; ++it)
         {
-            if (fs::is_regular_file(it->path()))
+            const fs::wpath path = ddsFolder / it->path();
+            if (fs::is_regular_file(path))
             {
                 std::wstring extension = fs::extension(it->path());
                 //boost::to_lower(extension);
@@ -655,7 +656,7 @@ HRESULT BeforeLoadingSrv( const std::wstring& filename )
 
                 if (it->path() == currentDds)
                     g_ddsFileIndex = g_ddsFilesInFolder.size();
-                g_ddsFilesInFolder.push_back(*it);
+                g_ddsFilesInFolder.push_back(path);
             }
         }
 
